@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:19:55 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/13 18:21:45 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/14 20:26:32 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,36 +24,44 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		return (0);
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
-int ispathvalid(char *input)
+static int ispathvalid(char *input)
 {
-	int	i;
-	
-	i = ft_strlen(input);
+	// not sure 100%%
 	if (ft_strncmp(&input[ft_strlen(input) - 4],".ber",4))
 		return (0);
 	return (1);
 }
+void	print2d(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while(arr[i])
+	{
+		printf("%s",arr[i]);
+		i++;
+	}
+}
 
 int main(int argc , char **argv)
 {
-	int	fd;
-	char *line;
-	
-    if(argc != 2)
+	char **map;
+
+	if(argc != 2)
 	{
-		printf("Meow");
+		printf("no arguments");
         return (0);
 	}
 	if (!ispathvalid(argv[1]))
 	{
-		printf("error");
+		printf("invalid path");
 		return (0);
-	}	
-	fd = open("map.ber", O_RDONLY);
-    while ((line = get_next_line(fd)))
-    {
-        printf("%s", line);
-        free(line);
-    }
-	close(fd);
+	}
+	map = get_map(argv[1]);
+	if(!map)
+	{
+		printf("failed to read map");
+		return (0);
+	}
+	print2d(map);
 }

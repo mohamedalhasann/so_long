@@ -5,6 +5,9 @@ CFLAGS      = -Wall -Wextra -Werror
 
 SRC         = \
               main.c \
+			  get_map.c \
+			  input_validation.c \
+			  map_validation.c \
               ./get_next_line/get_next_line.c \
               ./get_next_line/get_next_line_utils.c
 

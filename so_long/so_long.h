@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:20:26 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/13 17:23:30 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/14 21:25:21 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,6 @@
 # include <string.h>
 # include <unistd.h>
 # include "get_next_line/get_next_line.h"
-
+char    **get_map(char *argv);
+int countlines(char *path);
+int	ft_2dstrlen(char **map);
