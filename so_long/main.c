@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:19:55 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/14 20:26:32 by mohamed          ###   ########.fr       */
+/*   Updated: 2025/12/15 20:26:08 by malhassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"so_long.h"
+#include "so_long.h"
+
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
@@ -45,23 +46,27 @@ void	print2d(char **arr)
 
 int main(int argc , char **argv)
 {
-	char **map;
+	char 	**map;
+	char	**temp;
+	t_point p;
 
 	if(argc != 2)
-	{
-		printf("no arguments");
-        return (0);
-	}
+		return (argument_error());
 	if (!ispathvalid(argv[1]))
-	{
-		printf("invalid path");
-		return (0);
-	}
+		return (invalidpath());
 	map = get_map(argv[1]);
 	if(!map)
 	{
 		printf("failed to read map");
 		return (0);
 	}
-	print2d(map);
+	if (!onesonsides(map) || !validmap(map))
+	{
+		freemap(map);
+		return (0);
+	}
+	findplayer(map, &p);
+	temp = get_map(argv[1]);
+	floodfill(temp,p.x,p.y);
+	print2d(temp);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:34:34 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/14 20:27:30 by mohamed          ###   ########.fr       */
+/*   Updated: 2025/12/15 20:22:48 by malhassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int countlines(char *path)
 {
+    // i guess no leaks here
     int fd;
     char    *buffer;
     int counter;
@@ -30,8 +31,7 @@ int countlines(char *path)
     close(fd);
     return (counter);
 }
-
-char    **get_map(char *argv)
+char    **get_map(char *argv) // this function is converting argv[1] to a 2d character array
 {
     int i;
     int fd;
@@ -47,22 +47,69 @@ char    **get_map(char *argv)
     i = 0;
     fd = open(argv,O_RDONLY);
     if (fd < 0)
-    {
-        free(map);
-        return (NULL);
-    }
+        return (freemap(map));
     while (i < lines)
     {
         map[i] = get_next_line(fd);
         if (!map[i])
-        {
-            // i need to free the map using another function
-            close(fd);
-            return (NULL);
-        }
+            return (freemapwithclosingfd(map,fd));
         i++;
     }
     map[i] = NULL;
     close(fd);
     return (map);
+}
+
+void   findplayer(char **map,t_point *p)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while(map[i])
+    {
+        j = 0;
+        while(map[i][j])
+        {
+            if(map[i][j] == 'P')
+            {
+                p->x = i;
+                p->y = j;
+                return;
+            }
+            j++;
+        }
+        i++;
+    }
+}
+void    floodfill(char **map, int x , int y)
+{
+    if (!map || x < 0 || y < 0|| !map[0])
+        return;
+    if (map[x][y] == '1' || map[x][y] == 'M')
+        return;
+    map[x][y] = 'M';
+    floodfill(map,x-1,y);
+    floodfill(map,x+1,y);
+    floodfill(map,x,y+1);
+    floodfill(map,x,y-1);
+}
+char    **copy_map(char **map, char *argv)
+{
+    int i;
+    int j;
+    char    **temp;
+
+    i = 0;
+    j = 0;
+    temp = malloc(countlines(argv) + 1);
+    if (!temp)
+        return (NULL); 
+    while(map[i])
+    {
+        temp[i] = map[i]; 
+        i++;
+    }
+    map[i] = NULL;
+    return (temp);
 }

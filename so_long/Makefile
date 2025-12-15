@@ -8,6 +8,8 @@ SRC         = \
 			  get_map.c \
 			  input_validation.c \
 			  map_validation.c \
+			  free_functions.c \
+			  print_error.c \
               ./get_next_line/get_next_line.c \
               ./get_next_line/get_next_line_utils.c
 
@@ -29,4 +31,4 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re: fclean all
+re: fclean all	
