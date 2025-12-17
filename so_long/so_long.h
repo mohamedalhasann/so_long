@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:20:26 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/15 20:05:03 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:54:19 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include 
 # include <unistd.h>
 # include "get_next_line/get_next_line.h"
 typedef struct s_point
@@ -34,3 +35,6 @@ int		argument_error();
 int		invalidpath();
 int	onesonsides(char **map);
 int	validmap(char **map);
+int	shapevalidation(char **map);
+int	charactersvalidation(char **map);
+int	floodfillvalidation(char **map);

@@ -6,7 +6,7 @@
 /*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:33:33 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/14 21:25:01 by mohamed          ###   ########.fr       */
+/*   Updated: 2025/12/16 16:37:00 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,24 @@ int	validmap(char **map) // 1's on sides , 1 player , 1 collecitble at least
 		i++;
 	}
 	return (playercounter == 1 && collectcounter && exitcounter == 1);
+}
+
+int	floodfillvalidation(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while(map[i][j])
+		{
+			if (map[i][j] == 'C' || map[i][j] == 'E')
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }

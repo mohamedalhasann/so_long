@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:34:34 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/15 20:22:48 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:11:18 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,23 +93,4 @@ void    floodfill(char **map, int x , int y)
     floodfill(map,x+1,y);
     floodfill(map,x,y+1);
     floodfill(map,x,y-1);
-}
-char    **copy_map(char **map, char *argv)
-{
-    int i;
-    int j;
-    char    **temp;
-
-    i = 0;
-    j = 0;
-    temp = malloc(countlines(argv) + 1);
-    if (!temp)
-        return (NULL); 
-    while(map[i])
-    {
-        temp[i] = map[i]; 
-        i++;
-    }
-    map[i] = NULL;
-    return (temp);
 }

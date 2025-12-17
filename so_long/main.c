@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:19:55 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/15 20:26:08 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:50:11 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int main(int argc , char **argv)
 {
 	char 	**map;
 	char	**temp;
+
 	t_point p;
 
 	if(argc != 2)
@@ -60,7 +61,7 @@ int main(int argc , char **argv)
 		printf("failed to read map");
 		return (0);
 	}
-	if (!onesonsides(map) || !validmap(map))
+	if (!onesonsides(map) || !validmap(map) || !shapevalidation(map) || !charactersvalidation(map))
 	{
 		freemap(map);
 		return (0);
@@ -68,5 +69,6 @@ int main(int argc , char **argv)
 	findplayer(map, &p);
 	temp = get_map(argv[1]);
 	floodfill(temp,p.x,p.y);
-	print2d(temp);
+	if(!floodfillvalidation(temp))
+		printf("flood fill error");
 }
