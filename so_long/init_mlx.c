@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/13 13:19:55 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/17 17:10:06 by malhassa         ###   ########.fr       */
+/*   Created: 2025/12/17 16:01:31 by malhassa          #+#    #+#             */
+/*   Updated: 2025/12/17 16:59:41 by malhassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int main(int argc , char **argv)
+int	init_mlx(t_game *game)
 {
-	t_game game;
-
-	if(argc != 2)
-		return (argument_error());
-	game.map = get_map(argv[1]);
-	if(!game.map)
-	{
-		printf("failed to read map");
+	game->mlx = mlx_init();
+	if (!game->mlx)
 		return (0);
-	}
-	if(!mapvalidation(argv[1],game.map))
+	return (1);
+}
+int	create_window(t_game *game)
+{
+	game->win = mlx_new_window(game->mlx,game->width * TILE_SIZE,game->height * TILE_SIZE,"so_long");
+	if (!game->win)
 		return (0);
-	if(!init_mlx(&game))
-		return (0);
-	if(!create_window(&game))
-		return (0);
-	//put images
-	// rendering
-	mlx_loop(game.mlx);
-}	
+	return (1);
+}

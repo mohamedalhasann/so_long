@@ -1,34 +1,32 @@
-NAME        = so_long
+NAME = so_long
 
-CC          = cc
-CFLAGS      = -Wall -Wextra -Werror
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 
-SRC         = \
-              main.c \
-			  get_map.c \
-			  input_validation.c \
-			  map_validation.c \
-			  free_functions.c \
-			  print_error.c \
-              ./get_next_line/get_next_line.c \
-              ./get_next_line/get_next_line_utils.c
+SRCS = main.c \
+       get_map.c \
+       all_validation.c \
+	   additional_functions.c \
+       init_mlx.c \
+       free_functions.c \
+       print_error.c
 
-OBJ         = $(SRC:.c=.o)
+GNL = get_next_line/get_next_line.c \
+      get_next_line/get_next_line_utils.c
 
-INCLUDES    = -I.
+OBJS = $(SRCS:.c=.o) $(GNL:.c=.o)
+
+MLX_FLAGS = -lmlx -lXext -lX11 -lm
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-
-%.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -o $(NAME)
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
 
-re: fclean all	
+re: fclean all
