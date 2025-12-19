@@ -6,7 +6,7 @@
 /*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:20:26 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/17 17:00:09 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:01:17 by malhassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,23 @@
 # include <mlx.h>
 # include "get_next_line/get_next_line.h"
 
-#define TILE_SIZE 52
+#define TILE_SIZE 64
 
 typedef struct s_point
 {
 	int x;
 	int y;
 }				t_point;
+
+typedef struct s_images
+{
+	void	*wall;
+	void	*floor;
+	void	*collect;
+	void	*exit;
+	void	*player;
+}				t_images;
+
 typedef struct s_game
 {
 	void	*mlx;
@@ -32,7 +42,15 @@ typedef struct s_game
 	char	**map;
 	int		width;
 	int		height;
+	t_point x;
+	t_point y;
+	t_images wall;
+	t_images floor;
+	t_images collect;
+	t_images exit;
+	t_images player;
 }	t_game;
+
 char    **get_map(char *argv);
 int countlines(char *path);
 int	ft_2dstrlen(char **map);
@@ -56,4 +74,4 @@ int	mapvalidation(char *argv, char **map);
 int	init_mlx(t_game *game);
 int	create_window(t_game *game);
 int	get_map_width(char **map);
-
+int	put_image(t_game *game);

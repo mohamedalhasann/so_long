@@ -6,7 +6,7 @@
 /*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:19:55 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/17 17:10:06 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:15:51 by malhassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,15 @@ int main(int argc , char **argv)
 		printf("failed to read map");
 		return (0);
 	}
-	if(!mapvalidation(argv[1],game.map))
+	if (!mapvalidation(argv[1],game.map))
 		return (0);
-	if(!init_mlx(&game))
+	if (!init_mlx(&game))
 		return (0);
-	if(!create_window(&game))
+	if (!create_window(&game))
 		return (0);
-	//put images
+	// if (!put_image(&game))
+	// return (0);
 	// rendering
+	// hooks
 	mlx_loop(game.mlx);
-}	
+}
