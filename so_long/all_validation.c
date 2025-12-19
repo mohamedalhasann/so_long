@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   all_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:33:33 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/17 15:59:08 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/19 22:18:12 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,5 +159,6 @@ int	mapvalidation(char *argv, char **map)
 		printf("flood fill error");
 		return (0);
 	}
+	freemap(temp);
 	return (1);
 }

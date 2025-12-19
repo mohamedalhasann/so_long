@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:20:26 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/18 13:01:17 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/19 22:15:00 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,3 +75,7 @@ int	init_mlx(t_game *game);
 int	create_window(t_game *game);
 int	get_map_width(char **map);
 int	put_image(t_game *game);
+int	render(t_game *game);
+int    x_button(t_game *game);
+int    other_keys(int key,t_game *game);
+void	set_hooks(t_game *game);
