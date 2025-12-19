@@ -6,7 +6,7 @@
 /*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 15:03:15 by mohamed           #+#    #+#             */
-/*   Updated: 2025/12/19 22:04:40 by mohamed          ###   ########.fr       */
+/*   Updated: 2025/12/19 22:47:28 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,13 @@ void	moveplayer(t_game *game, int x, int y)
 
 int    x_button(t_game *game)
 {
-    free(game->map);
-    mlx_destroy_window(game->mlx,game->win);
+    freemap(game->map);
+	mlx_destroy_image(game->mlx,game->wall.wall);
+	mlx_destroy_image(game->mlx,game->floor.floor);
+	mlx_destroy_image(game->mlx,game->collect.collect);
+	mlx_destroy_image(game->mlx,game->exit.exit);
+	mlx_destroy_image(game->mlx,game->player.player);
+	mlx_destroy_window(game->mlx,game->win);
     mlx_destroy_display(game->mlx);
     free(game->mlx);
     exit(0);

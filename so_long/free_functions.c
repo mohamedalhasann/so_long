@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 19:45:11 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/15 20:14:37 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/19 22:50:33 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ char **	freemap(char **map)
 	int i;
 
     i = 0;
+    if(!map)
+        return (NULL);
     while(map[i])
     {
         free(map[i]);

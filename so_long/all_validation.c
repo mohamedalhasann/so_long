@@ -6,7 +6,7 @@
 /*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:33:33 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/19 22:18:12 by mohamed          ###   ########.fr       */
+/*   Updated: 2025/12/19 22:48:21 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,8 @@ int	mapvalidation(char *argv, char **map)
 	floodfill(temp,p.x,p.y);
 	if(!floodfillvalidation(temp))
 	{
+		freemap(temp);
+		freemap(map);
 		printf("flood fill error");
 		return (0);
 	}

@@ -6,7 +6,7 @@
 /*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:19:55 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/19 22:18:20 by mohamed          ###   ########.fr       */
+/*   Updated: 2025/12/19 22:48:51 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,4 @@ int main(int argc , char **argv)
 	render(&game);
 	set_hooks(&game);
 	mlx_loop(game.mlx);
-	freemap(game.map);
 }
