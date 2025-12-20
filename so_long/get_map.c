@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:34:34 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/16 16:11:18 by mohamed          ###   ########.fr       */
+/*   Updated: 2025/12/20 15:15:35 by malhassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int countlines(char *path)
     close(fd);
     return (counter);
 }
-char    **get_map(char *argv) // this function is converting argv[1] to a 2d character array
+char    **get_map(char *argv)
 {
     int i;
     int fd;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   all_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:33:33 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/19 22:48:21 by mohamed          ###   ########.fr       */
+/*   Updated: 2025/12/20 15:37:31 by malhassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	onesonsides(char **map)
 }
 
 
-int	validmap(char **map) // 1's on sides , 1 player , 1 collecitble at least
+int	validcounters(char **map)
 {
 	int	i;
 	int	j;
@@ -146,8 +146,9 @@ int	mapvalidation(char *argv, char **map)
 	
 	if (!ispathvalid(argv))
 		return (invalidpath());
-	if (!onesonsides(map) || !validmap(map) || !shapevalidation(map) || !charactersvalidation(map))
+	if (!onesonsides(map) || !validcounters(map) || !shapevalidation(map) || !charactersvalidation(map))
 	{
+		printf("error\n"); // hafds
 		freemap(map);
 		return (0);
 	}

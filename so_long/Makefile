@@ -6,8 +6,8 @@ CFLAGS = -Wall -Wextra -Werror
 SRCS = main.c \
        get_map.c \
        all_validation.c \
-       additional_functions.c \
-       init_mlx.c \
+	additional_functions.c \
+       mlx_setup.c \
        game_hooks.c \
        free_functions.c \
        print_error.c
@@ -15,26 +15,18 @@ SRCS = main.c \
 GNL = get_next_line/get_next_line.c \
       get_next_line/get_next_line_utils.c
 
+
 OBJS = $(SRCS:.c=.o) $(GNL:.c=.o)
 
-MLX_DIR = minilibx-linux
-MLX_INC = -I$(MLX_DIR)
-MLX_LIB = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lbsd
+MLX_FLAGS = -lmlx -lXext -lX11 -lm
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(MLX_DIR)/libmlx.a
-	$(CC) $(CFLAGS) $(OBJS) $(MLX_LIB) -o $(NAME)
-
-%.o: %.c
-	$(CC) $(CFLAGS) $(MLX_INC) -c $< -o $@
-
-$(MLX_DIR)/libmlx.a:
-	$(MAKE) -C $(MLX_DIR)
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -o $(NAME)
 
 clean:
 	rm -f $(OBJS)
-	$(MAKE) -C $(MLX_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)

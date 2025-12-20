@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:20:26 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/19 22:15:00 by mohamed          ###   ########.fr       */
+/*   Updated: 2025/12/20 18:47:32 by malhassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,9 @@ typedef struct s_game
 	char	**map;
 	int		width;
 	int		height;
-	t_point x;
-	t_point y;
-	t_images wall;
-	t_images floor;
-	t_images collect;
-	t_images exit;
-	t_images player;
+	t_point dimesnsion;
+	t_images image;
 }	t_game;
-
 char    **get_map(char *argv);
 int countlines(char *path);
 int	ft_2dstrlen(char **map);
@@ -63,7 +57,7 @@ char	**closefd(int fd);
 int		argument_error();
 int		invalidpath();
 int	onesonsides(char **map);
-int	validmap(char **map);
+int	validcounters(char **map);
 int	shapevalidation(char **map);
 int	charactersvalidation(char **map);
 int	floodfillvalidation(char **map);

@@ -6,7 +6,7 @@
 /*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 19:54:14 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/15 19:57:03 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/20 15:14:37 by malhassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	argument_error()
 {
-	printf("no arguments"); // should be ft_printf
+	printf("no arguments"); // must be ft_printf
     return (0);
 }
 int	invalidpath()

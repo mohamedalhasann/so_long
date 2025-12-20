@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_hooks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 15:03:15 by mohamed           #+#    #+#             */
-/*   Updated: 2025/12/19 22:47:28 by mohamed          ###   ########.fr       */
+/*   Updated: 2025/12/20 18:47:28 by malhassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,32 +32,27 @@ int	collectiblevalidation(char **map)
 }
 void	moveplayer(t_game *game, int x, int y)
 {
-	int	new_x;
-	int	new_y;
-
-	new_x = game->x.x + x;
-	new_y = game->y.y + y;
-	if (game->map[new_x][new_y] == '1')
+	if (game->map[game->dimesnsion.x + x][game->dimesnsion.y+y] == '1')
 		return;
-	else if (game->map[new_x][new_y] == '0')
-	{
-		game->map[game->x.x][game->y.y] = '0';
-		game->map[new_x][new_y] = 'P';
-		game->x.x = new_x;
-		game->y.y = new_y;
-	}
-	else if (game->map[new_x][new_y] == 'C')
-	{
-		game->map[game->x.x][game->y.y] = '0';
-		game->map[new_x][new_y] = 'P';
-		game->x.x = new_x;
-		game->y.y = new_y;
-	}
-	else if (game->map[new_x][new_y] == 'E')
+	else if (game->map[game->dimesnsion.x+x][game->dimesnsion.y+y] == 'E')
 	{
 		if (collectiblevalidation(game->map))
 			x_button(game);
 		return;
+	}
+	else if (game->map[game->dimesnsion.x+x][game->dimesnsion.y+y] == '0')
+	{
+		game->map[game->dimesnsion.x][game->dimesnsion.y] = '0';
+		game->map[game->dimesnsion.x+x][game->dimesnsion.y+y] = 'P';
+		game->dimesnsion.x = game->dimesnsion.x+x;
+		game->dimesnsion.y = game->dimesnsion.y+y;
+	}
+	else if (game->map[game->dimesnsion.x+x][game->dimesnsion.y+y] == 'C')
+	{
+		game->map[game->dimesnsion.x][game->dimesnsion.y] = '0';
+		game->map[game->dimesnsion.x+x][game->dimesnsion.y+y] = 'P';
+		game->dimesnsion.x = game->dimesnsion.x+x;
+		game->dimesnsion.y = game->dimesnsion.y+y;
 	}
 	mlx_clear_window(game->mlx, game->win);
 	render(game);
@@ -66,11 +61,11 @@ void	moveplayer(t_game *game, int x, int y)
 int    x_button(t_game *game)
 {
     freemap(game->map);
-	mlx_destroy_image(game->mlx,game->wall.wall);
-	mlx_destroy_image(game->mlx,game->floor.floor);
-	mlx_destroy_image(game->mlx,game->collect.collect);
-	mlx_destroy_image(game->mlx,game->exit.exit);
-	mlx_destroy_image(game->mlx,game->player.player);
+	mlx_destroy_image(game->mlx,game->image.wall);
+	mlx_destroy_image(game->mlx,game->image.floor);
+	mlx_destroy_image(game->mlx,game->image.collect);
+	mlx_destroy_image(game->mlx,game->image.exit);
+	mlx_destroy_image(game->mlx,game->image.player);
 	mlx_destroy_window(game->mlx,game->win);
     mlx_destroy_display(game->mlx);
     free(game->mlx);
