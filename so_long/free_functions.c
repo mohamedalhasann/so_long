@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   free_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 19:45:11 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/20 15:17:40 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/20 22:48:03 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 char    **freemapwithclosingfd(char **map,int fd)
 {
-    int i;
-
-    i = 0;
     freemap(map);
     close(fd);
     return (NULL);

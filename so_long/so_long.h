@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:20:26 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/20 18:47:32 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/21 23:10:29 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include <mlx.h>
+# include "minilibx-linux/mlx.h"
 # include "get_next_line/get_next_line.h"
 
-#define TILE_SIZE 64
+#define TILE_SIZE 50
 
 typedef struct s_point
 {

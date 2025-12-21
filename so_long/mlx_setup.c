@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_setup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 16:01:31 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/20 18:46:25 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/21 19:52:17 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	put_image(t_game *game)
 	return (1);
 }
 int	render(t_game *game)
-{
+{	
 	int	i;
 	int	j;
 
@@ -56,9 +56,8 @@ int	render(t_game *game)
 		j = 0;
 		while(game->map[i][j])
 		{
-			if(game->map[i][j] == '0')
-				mlx_put_image_to_window(game->mlx,game->win,game->image.floor, j * TILE_SIZE, i*TILE_SIZE);
-			else if (game->map[i][j] == '1')
+			mlx_put_image_to_window(game->mlx,game->win,game->image.floor,j*TILE_SIZE,i*TILE_SIZE);
+			if (game->map[i][j] == '1')
 				mlx_put_image_to_window(game->mlx, game->win,game->image.wall, j * TILE_SIZE, i * TILE_SIZE);
 			else if (game->map[i][j] == 'C')
 				mlx_put_image_to_window(game->mlx, game->win,game->image.collect, j * TILE_SIZE, i * TILE_SIZE);

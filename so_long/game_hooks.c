@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_hooks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 15:03:15 by mohamed           #+#    #+#             */
-/*   Updated: 2025/12/20 18:47:28 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/21 20:03:07 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,28 +36,23 @@ void	moveplayer(t_game *game, int x, int y)
 		return;
 	else if (game->map[game->dimesnsion.x+x][game->dimesnsion.y+y] == 'E')
 	{
-		if (collectiblevalidation(game->map))
-			x_button(game);
-		return;
+	if (collectiblevalidation(game->map))
+		x_button(game);
+	game->map[game->dimesnsion.x][game->dimesnsion.y] = '0';
+	game->dimesnsion.x += x;
+	game->dimesnsion.y += y;
 	}
-	else if (game->map[game->dimesnsion.x+x][game->dimesnsion.y+y] == '0')
+	else if (game->map[game->dimesnsion.x+x][game->dimesnsion.y+y] == '0' || game->map[game->dimesnsion.x+x][game->dimesnsion.y+y] == 'C')
 	{
-		game->map[game->dimesnsion.x][game->dimesnsion.y] = '0';
+		if(!(game->map[game->dimesnsion.x][game->dimesnsion.y] == 'E'))
+			game->map[game->dimesnsion.x][game->dimesnsion.y] = '0';
 		game->map[game->dimesnsion.x+x][game->dimesnsion.y+y] = 'P';
-		game->dimesnsion.x = game->dimesnsion.x+x;
-		game->dimesnsion.y = game->dimesnsion.y+y;
-	}
-	else if (game->map[game->dimesnsion.x+x][game->dimesnsion.y+y] == 'C')
-	{
-		game->map[game->dimesnsion.x][game->dimesnsion.y] = '0';
-		game->map[game->dimesnsion.x+x][game->dimesnsion.y+y] = 'P';
-		game->dimesnsion.x = game->dimesnsion.x+x;
-		game->dimesnsion.y = game->dimesnsion.y+y;
+		game->dimesnsion.x += x;
+		game->dimesnsion.y += y;
 	}
 	mlx_clear_window(game->mlx, game->win);
 	render(game);
 }
-
 int    x_button(t_game *game)
 {
     freemap(game->map);
