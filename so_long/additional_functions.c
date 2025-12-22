@@ -6,21 +6,22 @@
 /*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 14:25:36 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/17 16:01:11 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/22 19:35:51 by malhassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"so_long.h"
+#include "so_long.h"
 
 int	ft_2dstrlen(char **map)
 {
 	int	i;
 
 	i = 0;
-	while(map[i])
+	while (map[i])
 		i++;
 	return (i);
 }
+
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
@@ -34,24 +35,26 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		return (0);
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
-int ispathvalid(char *input)
+
+int	ispathvalid(char *input)
 {
-	// not sure 100%%
-	if (ft_strncmp(&input[ft_strlen(input) - 4],".ber",4))
+	if (ft_strncmp(&input[ft_strlen(input) - 4], ".ber", 4))
 		return (0);
 	return (1);
 }
+
 void	print2d(char **arr)
 {
 	int	i;
 
 	i = 0;
-	while(arr[i])
+	while (arr[i])
 	{
-		printf("%s",arr[i]);
+		printf("%s", arr[i]);
 		i++;
 	}
 }
+
 int	get_map_width(char **map)
 {
 	int	width;

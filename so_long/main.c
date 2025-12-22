@@ -6,26 +6,24 @@
 /*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:19:55 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/20 15:19:36 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/22 19:40:38 by malhassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int main(int argc , char **argv)
+int	main(int argc, char **argv)
 {
-	t_game game;
+	t_game	game;
 
-	if(argc != 2)
+	if (argc != 2)
 		return (argument_error());
+	if (!ispathvalid(argv[1]))
+		return (invalidpath());
 	game.map = get_map(argv[1]);
-	if(!game.map)
-	{
-		// should i free here?
-		printf("failed to read map");
-		return (0);
-	}
-	if (!mapvalidation(argv[1],game.map))
+	if (!game.map)
+		return (failedmap());
+	if (!mapvalidation(argv[1], game.map))
 		return (0);
 	if (!init_mlx(&game))
 		return (0);

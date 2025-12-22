@@ -6,91 +6,118 @@
 /*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:34:34 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/20 15:15:35 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/22 19:40:19 by malhassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"so_long.h"
+#include "so_long.h"
 
-int countlines(char *path)
+int	countlines(char *path)
 {
-    // i guess no leaks here
-    int fd;
-    char    *buffer;
-    int counter;
+	int		fd;
+	char	*buffer;
+	int		counter;
 
-    fd = open(path,O_RDONLY);
-    counter = 0;
-    if (fd < 0)
-        return (-1);
-    while ((buffer = get_next_line(fd)))
-    {
-        free(buffer);
-        counter++;   
-    }
-    close(fd);
-    return (counter);
-}
-char    **get_map(char *argv)
-{
-    int i;
-    int fd;
-    char    **map;
-    int lines;
-
-    lines = countlines(argv);
-    if (lines <= 0)
-        return (NULL);
-    map = malloc(sizeof(char *) * (lines + 1));
-    if (!map)
-        return (NULL);
-    i = 0;
-    fd = open(argv,O_RDONLY);
-    if (fd < 0)
-        return (freemap(map));
-    while (i < lines)
-    {
-        map[i] = get_next_line(fd);
-        if (!map[i])
-            return (freemapwithclosingfd(map,fd));
-        i++;
-    }
-    map[i] = NULL;
-    close(fd);
-    return (map);
+	fd = open(path, O_RDONLY);
+	counter = 0;
+	if (fd < 0)
+		return (-1);
+	while ((buffer = get_next_line(fd)))
+	{
+		free(buffer);
+		counter++;
+	}
+	close(fd);
+	return (counter);
 }
 
-void   findplayer(char **map,t_point *p)
+char	**get_map(char *argv)
 {
-    int i;
-    int j;
+	int		i;
+	int		fd;
+	char	**map;
+	int		lines;
 
-    i = 0;
-    while(map[i])
-    {
-        j = 0;
-        while(map[i][j])
-        {
-            if(map[i][j] == 'P')
-            {
-                p->x = i;
-                p->y = j;
-                return;
-            }
-            j++;
-        }
-        i++;
-    }
+	lines = countlines(argv);
+	if (lines <= 0)
+		return (NULL);
+	map = malloc(sizeof(char *) * (lines + 1));
+	if (!map)
+		return (NULL);
+	i = 0;
+	fd = open(argv, O_RDONLY);
+	if (fd < 0)
+		return (freemap(map));
+	while (i < lines)
+	{
+		map[i] = get_next_line(fd);
+		if (!map[i])
+			return (freemapwithclosingfd(map, fd));
+		i++;
+	}
+	map[i] = NULL;
+	close(fd);
+	return (map);
 }
-void    floodfill(char **map, int x , int y)
+
+void	findplayer(char **map, t_point *p)
 {
-    if (!map || x < 0 || y < 0|| !map[0])
-        return;
-    if (map[x][y] == '1' || map[x][y] == 'M')
-        return;
-    map[x][y] = 'M';
-    floodfill(map,x-1,y);
-    floodfill(map,x+1,y);
-    floodfill(map,x,y+1);
-    floodfill(map,x,y-1);
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'P')
+			{
+				p->x = i;
+				p->y = j;
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	floodfill(char **map, int x, int y)
+{
+	if (!map || x < 0 || y < 0 || !map[0])
+		return ;
+	if (map[x][y] == '1' || map[x][y] == 'M')
+		return ;
+	map[x][y] = 'M';
+	floodfill(map, x - 1, y);
+	floodfill(map, x + 1, y);
+	floodfill(map, x, y + 1);
+	floodfill(map, x, y - 1);
+}
+
+int	mapvalidation(char *argv, char **map)
+{
+	char	**temp;
+	t_point	p;
+
+	if (!onesonsides(map) || !validcounters(map) || !shapevalidation(map)
+		|| !charactersvalidation(map))
+	{
+		ft_printf("Error\ninvalid map");
+		freemap(map);
+		return (0);
+	}
+	findplayer(map, &p);
+	temp = get_map(argv);
+	floodfill(temp, p.x, p.y);
+	if (!floodfillvalidation(temp))
+	{
+		freemap(temp);
+		freemap(map);
+		ft_printf("Error\nflood fill error");
+		return (0);
+	}
+	freemap(temp);
+	return (1);
 }

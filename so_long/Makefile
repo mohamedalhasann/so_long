@@ -2,7 +2,7 @@ NAME = so_long
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-INC = -Iminilibx-linux
+
 
 SRCS = main.c \
        get_map.c \
@@ -18,19 +18,28 @@ GNL = get_next_line/get_next_line.c \
 
 OBJS = $(SRCS:.c=.o) $(GNL:.c=.o)
 
-MLX_DIR  = minilibx-linux
-MLX_LIBS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lbsd
 
-all: $(NAME)
+FT_PRINTF_DIR = ft_printf
+FT_PRINTF_LIB = $(FT_PRINTF_DIR)/libftprintf.a
+
+
+MLX_FLAGS = -lmlx -lXext -lX11 -lm
+
+
+all: $(FT_PRINTF_LIB) $(NAME)
+
+$(FT_PRINTF_LIB):
+	make -C $(FT_PRINTF_DIR)
 
 $(NAME): $(OBJS)
-	$(MAKE) -C $(MLX_DIR)
-	$(CC) $(CFLAGS) $(INC) $(OBJS) $(MLX_LIBS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(FT_PRINTF_LIB) $(MLX_FLAGS) -o $(NAME)
 
 clean:
 	rm -f $(OBJS)
+	make -C $(FT_PRINTF_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
+	make -C $(FT_PRINTF_DIR) fclean
 
 re: fclean all

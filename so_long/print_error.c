@@ -6,19 +6,26 @@
 /*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 19:54:14 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/20 15:14:37 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/22 19:43:08 by malhassa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	argument_error()
+int	argument_error(void)
 {
-	printf("no arguments"); // must be ft_printf
-    return (0);
+	ft_printf("Error\nno arguments passed");
+	return (0);
 }
-int	invalidpath()
+
+int	invalidpath(void)
 {
-	printf("invalid path");
+	ft_printf("Error\ninvalid path");
+	return (0);
+}
+
+int	failedmap(void)
+{
+	ft_printf("Error\nfailed to read map");
 	return (0);
 }
