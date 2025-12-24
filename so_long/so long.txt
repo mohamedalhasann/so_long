@@ -1,0 +1,26 @@
+lets explain so_long project :
+so_long is a project that helps you learn basic 2d game concepts such as rendering , window management , and event hooks and how all these components fits together. 
+so_long uses the minilibx library , which provides simple graphical functions and communications with the x11 server to display graphics and handle user input.
+we create a window , draw a map using images , move a player using keyboard input , and update the screen after each action.
+minilibx helps us interact with the x11 system to handle graphics and events. the project teaches us how rendering , input handling , and game logic work together in a simple game loop
+what is x11 server? x window system 
+x11 is the system that controls graphics on linux , the program doesnt draw directly on the screen , it talks to the x11 server , and the x11 server server draws for it
+solong->minilibx->x11->screen+keyboard
+
+code explanation :
+typedef struct s_game
+{
+	void		*mlx;
+	void		*win;
+	char		**map;
+	int			width;
+	int			height;
+	int			movescounter;
+	t_point		dimesnsion;
+	t_images	image;
+}				t_game;
+this structure has a *mlx that point to the minilibx connection , used to communicate with the x11 server , required to create windows and images
+and it also has win that point to the game window , this is where everything is rendered
+t_game is the main structure of the program; it contains the graphical context , the map data , the player state , and everything needed to render and control the game
+
+
