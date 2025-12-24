@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:34:34 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/22 19:40:19 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/23 21:23:40 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	**get_map(char *argv)
 	lines = countlines(argv);
 	if (lines <= 0)
 		return (NULL);
-	map = malloc(sizeof(char *) * (lines + 1));
+	map = malloc(sizeof(char *) * (lines + 1));// check null
 	if (!map)
 		return (NULL);
 	i = 0;
@@ -85,10 +85,10 @@ void	findplayer(char **map, t_point *p)
 
 void	floodfill(char **map, int x, int y)
 {
-	if (!map || x < 0 || y < 0 || !map[0])
+	if (!map || x < 0 || y < 0 || !map[x] || !map[x][y])
 		return ;
 	if (map[x][y] == '1' || map[x][y] == 'M')
-		return ;
+		return;
 	map[x][y] = 'M';
 	floodfill(map, x - 1, y);
 	floodfill(map, x + 1, y);

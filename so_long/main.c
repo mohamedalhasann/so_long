@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:19:55 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/22 19:40:38 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/23 21:44:30 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 		return (0);
 	if (!init_mlx(&game))
 		return (0);
-	if (!create_window(&game))
+	if (!create_window(&game))	
 		return (0);
 	if (!put_image(&game))
 		return (0);

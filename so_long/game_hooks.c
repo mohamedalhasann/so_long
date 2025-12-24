@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_hooks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 15:03:15 by mohamed           #+#    #+#             */
-/*   Updated: 2025/12/22 19:39:16 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/23 22:17:51 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	moveplayer(t_game *game, int x, int y)
 		game->dimesnsion.x += x;
 		game->dimesnsion.y += y;
 	}
-	mlx_clear_window(game->mlx, game->win);
 	ft_printf("moves counter : %d\n", game->movescounter);
 	render(game);
 }

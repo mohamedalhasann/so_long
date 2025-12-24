@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   additional_functions.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 14:25:36 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/22 19:35:51 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/23 19:35:06 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 int	ispathvalid(char *input)
 {
+
+	// should i fix it?
 	if (ft_strncmp(&input[ft_strlen(input) - 4], ".ber", 4))
 		return (0);
 	return (1);

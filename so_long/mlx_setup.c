@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_setup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 16:01:31 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/22 19:42:06 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/23 22:17:06 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,40 @@ int	init_mlx(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
+	{
+		freemap(game->map);
 		return (0);
+	}
 	return (1);
 }
 
 int	create_window(t_game *game)
 {
 	game->height = ft_2dstrlen(game->map);
-	game->width = ft_strlen(game->map[0]) - 1;
+	game->width = ft_strlen(game->map[0]) - 1; //
 	game->win = mlx_new_window(game->mlx, game->width * TILE_SIZE, game->height
 			* TILE_SIZE, "so_long");
 	if (!game->win)
+	{
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+		freemap(game->map);	
 		return (0);
+	}
 	return (1);
+}
+void	destroy_images(t_game *game)
+{
+	if (game->image.wall)
+		mlx_destroy_image(game->mlx, game->image.wall);
+	if (game->image.collect)
+		mlx_destroy_image(game->mlx, game->image.collect);
+	if (game->image.exit)
+		mlx_destroy_image(game->mlx, game->image.exit);
+	if (game->image.floor)
+		mlx_destroy_image(game->mlx, game->image.floor);
+	if (game->image.player)
+		mlx_destroy_image(game->mlx, game->image.player);
 }
 
 int	put_image(t_game *game)
@@ -49,7 +70,14 @@ int	put_image(t_game *game)
 			&w, &h);
 	if (!game->image.player || !game->image.wall || !game->image.collect
 		|| !game->image.floor || !game->image.exit)
-		return (0);
+		{
+			destroy_images(game);
+			mlx_destroy_window(game->mlx,game->win);
+			mlx_destroy_display(game->mlx);
+			free(game->mlx);
+			freemap(game->map);	
+			return (0);
+		}
 	return (1);
 }
 

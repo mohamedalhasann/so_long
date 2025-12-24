@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malhassa <malhassa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:20:26 by malhassa          #+#    #+#             */
-/*   Updated: 2025/12/22 18:16:38 by malhassa         ###   ########.fr       */
+/*   Updated: 2025/12/23 21:53:12 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,3 +76,4 @@ int				x_button(t_game *game);
 int				other_keys(int key, t_game *game);
 void			set_hooks(t_game *game);
 int				failedmap(void);
+void	destroy_images(t_game *game);
